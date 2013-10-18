@@ -43,5 +43,19 @@ namespace MapEditor.IO
         {
             mBasePath = basePath;
         }
+
+        public bool LoadArchives()
+        {
+            var attribs = System.IO.File.GetAttributes(mBasePath);
+            if ((attribs & System.IO.FileAttributes.Directory) == 0)
+                return false;
+
+            if (mBasePath.EndsWith('\\') == false)
+                mBasePath += '\\';
+
+            var dataPath = mBasePath + "data";
+
+            return true;
+        }
     }
 }
